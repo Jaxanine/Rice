@@ -78,4 +78,4 @@ console.log(addAnsText);
 								     };
 
   setTimeout(riceCooker, 2000 + (Math.random()*500 - 250));
-				}
+				
