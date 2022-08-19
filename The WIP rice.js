@@ -1,10 +1,11 @@
 //Load answer key
-const riceCooker = () => {
+ const riceCooker = () => {
   //Get current correct answer
   let unanswered = true;
   let addAnsText = document.getElementsByClassName("card-title")[0].innerHTML;
   let ansText = aKey[document.getElementsByClassName("card-title")[0].innerHTML];
   let choices = document.getElementsByClassName("card-button");
+   
   console.log(" ");
   //Determine correct answer for current question
   for(let i = 0; i < choices.length && unanswered; i++){
@@ -13,15 +14,19 @@ const riceCooker = () => {
  	  unanswered = false;
 	  console.log("Answer correct!");
 	  }
-	}
-     if(unanswered){
+	
+    else if(unanswered){
      //If question cannot be found in answer key, fall back to choosing the first option and notify the user.
         console.log("Answer undefined for: " + addAnsText);
-  	choices[0].click();	
-	addAns(unanswered,aKey,addAnsText,ansText);
+	let oldText = addAnsText);
+  	choices[0].click();	 	
+	console.log(oldText);
+	console.log(addAnsText);
+	setTimeout(100, addAns(unanswered,aKey,addAnsText,ansText,oldText));
+	
         }
-           
-  setTimeout(riceCooker, 2000 + (Math.random()*500 - 250));
+       };   
+  setTimeout( 2000 + (Math.random()*500 - 250), riceCooker);
 }
 var aKey = {
 "What does バス mean?": "bus",
@@ -53,11 +58,13 @@ var aKey = {
 "What does のみます mean?": "to drink"
 }
 
-this.addAns = function(unanswered,aKey,addAnsText,ansText,correctAns) 
+this.addAns = function(unanswered,aKey,oldText,addAnsText,ansText,correctAns) 
 {
 console.log(addAnsText);
-  if(addAnsText != undefined)
+console.log(oldText);
+  if(addAnsText != undefined && addAnsText == oldText)
 	{
+    
     var correctAns;
     Array.from(document.getElementsByClassName("fade-appear-done")).forEach(
     function (curr,index){
@@ -66,14 +73,19 @@ console.log(addAnsText);
                          })	
         if(correctAns != undefined)
 	  { 
-	aKey[addAnsText] = correctAns;
+	aKey[addAnsText] = correctAns,
 	console.log(addAnsText,correctAns)
 	  }
-	else{
-		console.log("Could not save answer")
+	else
+	    {
+		console.log("Could not save answer, Retrying")
+	setTimeout(100, addAns);
 	    };
+	}
+    else if (addAnsText != oldText)
+	{
+	console.log("Question changed before answer grabbed");
 	};		                              
 }
 
   setTimeout(riceCooker, 2000 + (Math.random()*500 - 250));
-				
