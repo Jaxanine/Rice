@@ -18,11 +18,11 @@
     else{
      //If question cannot be found in answer key, fall back to choosing the first option and notify the user.
         console.log("Answer undefined for: " + addAnsText);
-	let oldText = addAnsText;
+	
   	choices[0].click();	 	
-	console.log(oldText);
+	
 	console.log(addAnsText);
-	setTimeout(100, addAns(aKey,addAnsText,ansText,oldText));
+	setTimeout(100, addAns(aKey,addAnsText,ansText));
 	
         }
        };   
@@ -58,34 +58,26 @@ var aKey = {
 "What does のみます mean?": "to drink"
 }
 
-this.addAns = function(aKey,oldText,addAnsText,ansText,correctAns) 
+this.addAns = function(aKey,addAnsText,ansText,correctAns) 
 {
 console.log(addAnsText);
-console.log(oldText);
-  if(addAnsText != undefined && addAnsText == oldText)
+  
+        var correctAns;    
+	let check = document.getElementsByClassName("fade-appear-done");
+    if(check.firstChild.innerText = "Correct")
+    {		console.log("Inct");
+	    correctAns=check.firstChild.innerText;
+	    aKey[addAnsText] = correctAns,
+		console.log(addAnsText,correctAns) 			
+	    
+      }	
+       
+     else
 	{
-    
-    var correctAns;
-    Array.from(document.getElementsByClassName("fade-appear-done")).forEach(
-    function (curr,index){
-    if(Array.from(curr.firstChild.classList).indexOf("correct")!=-1)
-    correctAns=curr.firstChild.innerText;
-                         })	
-        if(correctAns != undefined)
-	  { 
-	aKey[addAnsText] = correctAns,
-	console.log(addAnsText,correctAns)
-	  }
-	else
-	    {
-		console.log("Could not save answer, Retrying")
-	setTimeout(100, addAns);
-	    };
-	}
-    else if (addAnsText != oldText)
-	{
-	console.log("Question changed before answer grabbed");
-	};		                              
+		console.log("Incorrect");
+	};
+	   		                              
+
 }
 
   setTimeout(riceCooker, 2000 + (Math.random()*500 - 250));
