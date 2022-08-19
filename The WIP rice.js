@@ -21,8 +21,8 @@
 	
   	choices[0].click();	 	
 	
-	console.log(addAnsText);
-	setTimeout(100, addAns(aKey,addAnsText,ansText));
+	
+	setTimeout(100, addAns(aKey,addAnsText,ansText,choices));
 	
         }
        };   
@@ -58,15 +58,17 @@ var aKey = {
 "What does のみます mean?": "to drink"
 }
 
-this.addAns = function(aKey,addAnsText,ansText,correctAns) 
+this.addAns = function(aKey,addAnsText,ansText,correctAns,check,choices) 
 {
 console.log(addAnsText);
   
         var correctAns;    
-	let check = document.getElementsByClassName("fade-appear-done");
-    if(check.firstChild.innerText = "Correct")
-    {		console.log("Inct");
-	    correctAns=check.firstChild.innerText;
+	var check = document.getElementsByClassName("fade-appear-done")[0];
+	var grab = check.innerHTML.innerText;
+    if(grab = "Correct")
+    {		
+	  let correctAns=document.getElementsByClassName("card-button")[0].innerText;
+     console.log(correctAns);
 	    aKey[addAnsText] = correctAns,
 		console.log(addAnsText,correctAns) 			
 	    
@@ -76,7 +78,7 @@ console.log(addAnsText);
 	{
 		console.log("Incorrect");
 	};
-	   		                              
+ 		                              
 
 }
 
