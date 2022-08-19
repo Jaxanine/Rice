@@ -5,30 +5,24 @@ const riceCooker = () => {
   let addAnsText = document.getElementsByClassName("card-title")[0].innerHTML;
   let ansText = aKey[document.getElementsByClassName("card-title")[0].innerHTML];
   let choices = document.getElementsByClassName("card-button");
-  console.log("e");
+  console.log(" ");
   //Determine correct answer for current question
   for(let i = 0; i < choices.length && unanswered; i++){
     if(choices[i].innerHTML == ansText){
 	  choices[i].click();
  	  unanswered = false;
 	  console.log("Answer correct!");
-    				       }
-    else
-    {
-        //If question cannot be found in answer key, fall back to choosing the first option and notify the user.
+	  }
+	}
+     if(unanswered){
+     //If question cannot be found in answer key, fall back to choosing the first option and notify the user.
         console.log("Answer undefined for: " + addAnsText);
-  	choices[0].click();
-	
+  	choices[0].click();	
 	addAns(unanswered,aKey,addAnsText,ansText);
-        
-    };
+        }
+           
   setTimeout(riceCooker, 2000 + (Math.random()*500 - 250));
-
-                                                         }
-
-  
-
-
+}
 var aKey = {
 "What does バス mean?": "bus",
 "What does コート mean?": "coat",
@@ -70,12 +64,16 @@ console.log(addAnsText);
     if(Array.from(curr.firstChild.classList).indexOf("correct")!=-1)
     correctAns=curr.firstChild.innerText;
                          })	
-         
+        if(correctAns != undefined)
+	  { 
 	aKey[addAnsText] = correctAns;
 	console.log(addAnsText,correctAns)
-	    
-	}		                              
-								     };
+	  }
+	else{
+		console.log("Could not save answer")
+	    };
+	};		                              
+}
 
   setTimeout(riceCooker, 2000 + (Math.random()*500 - 250));
 				
