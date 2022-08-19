@@ -15,14 +15,14 @@
 	  console.log("Answer correct!");
 	  }
 	
-    else if(unanswered){
+    else{
      //If question cannot be found in answer key, fall back to choosing the first option and notify the user.
         console.log("Answer undefined for: " + addAnsText);
 	let oldText = addAnsText;
   	choices[0].click();	 	
 	console.log(oldText);
 	console.log(addAnsText);
-	setTimeout(100, addAns(unanswered,aKey,addAnsText,ansText,oldText));
+	setTimeout(100, addAns(aKey,addAnsText,ansText,oldText));
 	
         }
        };   
@@ -58,7 +58,7 @@ var aKey = {
 "What does のみます mean?": "to drink"
 }
 
-this.addAns = function(unanswered,aKey,oldText,addAnsText,ansText,correctAns) 
+this.addAns = function(aKey,oldText,addAnsText,ansText,correctAns) 
 {
 console.log(addAnsText);
 console.log(oldText);
