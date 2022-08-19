@@ -18,7 +18,7 @@
     else if(unanswered){
      //If question cannot be found in answer key, fall back to choosing the first option and notify the user.
         console.log("Answer undefined for: " + addAnsText);
-	let oldText = addAnsText);
+	let oldText = addAnsText;
   	choices[0].click();	 	
 	console.log(oldText);
 	console.log(addAnsText);
